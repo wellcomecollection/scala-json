@@ -4,6 +4,7 @@ object Dependencies {
 
   lazy val versions = new {
     val circe = "0.9.0"
+    val grizzled = "1.3.2"
     val logback = "1.1.8"
     val scalatest = "3.0.1"
   }
@@ -22,6 +23,7 @@ object Dependencies {
 
   val loggingDependencies = Seq(
     "ch.qos.logback" % "logback-classic" % versions.logback,
+    "org.clapper" %% "grizzled-slf4j" % versions.grizzled,
   )
 
   val libraryDependencies =
