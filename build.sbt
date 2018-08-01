@@ -1,5 +1,5 @@
-name    := "monitoring"
-version := "1.1.0"
+name    := "json"
+version := "0.0.1"
 
 organization := "uk.ac.wellcome"
 scalaVersion := "2.12.6"
