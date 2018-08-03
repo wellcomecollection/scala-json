@@ -41,6 +41,7 @@ jobs:
       env: TASK=release
 
 script:
+  - pip install wellcome-platform-cli==0.1.1
   - ./sbt_release_tooling.py "$TASK"
 
 stages:
