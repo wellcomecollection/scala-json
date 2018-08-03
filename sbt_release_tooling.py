@@ -338,40 +338,6 @@ def release():
     git('push', 'ssh-origin', '--tag')
 
 
-def branch_name():
-    """Return the name of the branch under test."""
-    # See https://graysonkoonce.com/getting-the-current-branch-name-during-a-pull-request-in-travis-ci/
-    if os.environ['TRAVIS_PULL_REQUEST'] == 'false':
-        return os.environ['TRAVIS_BRANCH']
-    else:
-        return os.environ['TRAVIS_PULL_REQUEST_BRANCH']
-
-
-def autoformat():
-    sbt('scalafmt')
-
-    # If there are any changes, push to GitHub immediately and fail the
-    # build.  This will abort the remaining jobs, and trigger a new build
-    # with the reformatted code.
-    if subprocess.call(['git', 'diff', '--exit-code']):
-        print('There were changes from formatting, creating a commit')
-
-        # We checkout the branch before we add the commit, so we don't
-        # include the merge commit that Travis makes.
-        git('fetch', 'ssh-origin')
-        git('checkout', branch_name())
-
-        git('add', '--verbose', '--update')
-        git('commit', '-m', 'Apply auto-formatting rules')
-        git('push', 'ssh-origin', 'HEAD:%s' % branch_name())
-
-        # We exit here to fail the build, so Travis will skip to the next
-        # build, which includes the autoformat commit.
-        sys.exit(1)
-    else:
-        print('There were no changes from auto-formatting')
-
-
 if __name__ == '__main__':
 
     # Rudimentary command-line argument parsing.
@@ -402,6 +368,6 @@ if __name__ == '__main__':
         else:
             sbt('test')
     elif sys.argv[1] == 'autoformat':
-        autoformat()
+        subprocess.check_call(['platform', 'autoformat'])
     else:
         assert False, sys.argv
