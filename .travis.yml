@@ -45,7 +45,7 @@ script:
   - ./sbt_release_tooling.py "$TASK"
 
 stages:
-  - format
+  - name: format
     if: type = pull_request
   - test
   - name: release
