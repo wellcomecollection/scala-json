@@ -45,6 +45,7 @@ script:
 
 stages:
   - format
+    if: type != push
   - test
   - name: release
     if: type = push
