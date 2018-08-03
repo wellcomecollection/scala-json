@@ -41,10 +41,11 @@ jobs:
       env: TASK=release
 
 script:
-  - ./sbt_release_tooling.py "$TASK"
+  - ./platform_cli.sh "$TASK"
 
 stages:
   - format
+    if: type = pull_request
   - test
   - name: release
     if: type = push
