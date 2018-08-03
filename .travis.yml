@@ -35,14 +35,14 @@ jobs:
     - stage: format
       env: TASK=autoformat
     - stage: test
-      env: TASK=test
+      env: TASK=sbt test
     - env: TASK=check_release_file
     - stage: release
-      env: TASK=release
+      env: TASK=sbt release
 
 script:
-  - pip install --user wellcome-platform-cli==0.2.1
-  - ./sbt_release_tooling.py "$TASK"
+  - pip install --user wellcome-platform-cli==0.4.0
+  - platform $TASK
 
 stages:
   - name: format
