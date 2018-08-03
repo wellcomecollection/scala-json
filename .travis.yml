@@ -46,6 +46,7 @@ script:
 
 stages:
   - format
+    if: type = pull_request
   - test
   - name: release
     if: type = push
