@@ -362,11 +362,7 @@ if __name__ == '__main__':
     elif sys.argv[1] == 'release':
         release()
     elif sys.argv[1] == 'test':
-        if os.path.exists('docker-compose.yml'):
-            sbt('dockerComposeUp')
-            sbt('test')
-        else:
-            sbt('test')
+        subprocess.check_call(['platform', 'sbt', 'test'])
     elif sys.argv[1] == 'autoformat':
         subprocess.check_call(['platform', 'autoformat'])
     else:
