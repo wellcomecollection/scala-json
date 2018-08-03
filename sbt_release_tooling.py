@@ -88,37 +88,6 @@ def latest_version():
     return latest
 
 
-def modified_files():
-    """
-    Returns a list of all files which have been modified between now
-    and the latest release.
-    """
-    files = set()
-    for command in [
-        ['git', 'diff', '--name-only', '--diff-filter=d',
-            latest_version(), 'HEAD'],
-        ['git', 'diff', '--name-only']
-    ]:
-        diff_output = subprocess.check_output(command).decode('ascii')
-        for l in diff_output.split('\n'):
-            filepath = l.strip()
-            if filepath:
-                assert os.path.exists(filepath)
-                files.add(filepath)
-    return files
-
-
-def has_source_changes():
-    """
-    Returns True if there are source changes since the previous release,
-    False if not.
-    """
-    changed_files = [
-        f for f in modified_files() if f.strip().endswith(('.sbt', '.scala'))
-    ]
-    return len(changed_files) != 0
-
-
 RELEASE_FILE = os.path.join(ROOT, 'RELEASE.md')
 
 
@@ -166,17 +135,6 @@ def parse_release_file():
         sys.exit(1)
 
     return release_type, release_contents
-
-
-def check_release_file():
-    if has_source_changes():
-        if not has_release():
-            print(
-                'There are source changes but no RELEASE.md. Please create '
-                'one to describe your changes.'
-            )
-            sys.exit(1)
-        parse_release_file()
 
 
 def hash_for_name(name):
@@ -358,7 +316,7 @@ if __name__ == '__main__':
     configure_secrets()
 
     if sys.argv[1] == 'check_release_file':
-        check_release_file()
+        subprocess.check_call(['platform', 'check_release_file'])
     elif sys.argv[1] == 'release':
         release()
     elif sys.argv[1] == 'test':
