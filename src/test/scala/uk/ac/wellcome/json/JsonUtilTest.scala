@@ -1,5 +1,8 @@
 package uk.ac.wellcome.json
 
+import java.net.URI
+import java.util.UUID
+
 import org.scalatest.{FunSpec, Matchers}
 import uk.ac.wellcome.json.JsonUtil._
 import uk.ac.wellcome.json.exceptions.JsonDecodingError
@@ -46,7 +49,6 @@ class JsonUtilTest extends FunSpec with Matchers with JsonAssertions {
       triedA.isFailure shouldBe true
       triedA.failed.get shouldBe a[JsonDecodingError]
     }
-
   }
 
   describe("toJson") {
@@ -72,4 +74,76 @@ class JsonUtilTest extends FunSpec with Matchers with JsonAssertions {
     }
   }
 
+  describe("URI conversion") {
+    case class Website(title: String, uri: URI)
+
+    it("converts a URI to JSON") {
+      val website = Website(
+        title = "Wellcome Collection",
+        uri = new URI("https://wellcomecollection.org/")
+      )
+
+      assertJsonStringsAreEqual(
+        toJson(website).get,
+        """
+          |{
+          |  "title": "Wellcome Collection",
+          |  "uri": "https://wellcomecollection.org/"
+          |}
+        """.stripMargin
+      )
+    }
+
+    it("serialises a JSON string as a URI") {
+      val jsonString =
+        """
+          |{
+          |  "title": "JSON",
+          |  "uri": "https://json.org/"
+          |}
+        """.stripMargin
+
+      val website = fromJson[Website](jsonString).get
+      website.uri shouldBe new URI("https://json.org/")
+    }
+  }
+
+  describe("UUID conversion") {
+    case class Shipment(name: String, id: UUID)
+
+    it("converts a shipment to JSON") {
+      val uuid = uuidFromString("transport")
+      val shipment = Shipment(
+        name = "Red cars and yellow cars",
+        id = uuid
+      )
+
+      assertJsonStringsAreEqual(
+        toJson(shipment).get,
+        s"""
+          |{
+          |  "name": "Red cars and yellow cars",
+          |  "id": "${uuid.toString}"
+          |}
+        """.stripMargin
+      )
+    }
+
+    it("serialises a JSON string as a URI") {
+      val uuid = uuidFromString("electronics")
+      val jsonString =
+        s"""
+          |{
+          |  "name": "Laptops and phones",
+          |  "id": "${uuid.toString}"
+          |}
+        """.stripMargin
+
+      val website = fromJson[Shipment](jsonString).get
+      website.id shouldBe uuid
+    }
+
+    def uuidFromString(s: String): UUID =
+      UUID.nameUUIDFromBytes(s.getBytes())
+  }
 }
