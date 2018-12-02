@@ -38,11 +38,10 @@ jobs:
       env: TASK=sbt test
     - env: TASK=check_release_file
     - stage: release
-      env: TASK=sbt release_lib
+      env: TASK=release
 
 script:
-  - pip install --user wellcome-platform-cli==0.4.0
-  - platform $TASK
+  - ./sbt_release_tooling.py "$TASK"
 
 stages:
   - name: format
