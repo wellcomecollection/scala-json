@@ -35,7 +35,7 @@ jobs:
     - stage: format
       env: TASK=autoformat
     - stage: test
-      env: TASK=sbt test
+      env: TASK=test
     - env: TASK=check_release_file
     - stage: release
       env: TASK=release
