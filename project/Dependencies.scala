@@ -14,7 +14,6 @@ object Dependencies {
     "io.circe" %% "circe-generic"% versions.circe,
     "io.circe" %% "circe-generic-extras"% versions.circe,
     "io.circe" %% "circe-parser"% versions.circe,
-    "io.circe" %% "circe-java8" % versions.circe,
   )
 
   val testDependencies = Seq(
