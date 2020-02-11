@@ -1,6 +1,6 @@
 # scala-json
 
-[![Build Status](https://travis-ci.org/wellcometrust/scala-json.svg?branch=master)](https://travis-ci.org/wellcometrust/scala-json)
+[![Build Status](https://travis-ci.org/wellcomecollection/scala-json.svg?branch=master)](https://travis-ci.org/wellcomecollection/scala-json)
 
 JSON serialisation code in use at Wellcome:
 
