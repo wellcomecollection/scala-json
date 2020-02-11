@@ -1,6 +1,6 @@
 # scala-json
 
-[![Build Status](https://travis-ci.org/wellcometrust/scala-json.svg?branch=master)](https://travis-ci.org/wellcometrust/scala-json)
+[![Build Status](https://travis-ci.org/wellcomecollection/scala-json.svg?branch=master)](https://travis-ci.org/wellcomecollection/scala-json)
 
 JSON serialisation code in use at Wellcome:
 
@@ -10,7 +10,7 @@ JSON serialisation code in use at Wellcome:
 
 This library is used as part of the [Wellcome Digital Platform][platform].
 
-[platform]: https://github.com/wellcometrust/platform
+[platform]: https://github.com/wellcomecollection/platform
 
 ## Installation
 
