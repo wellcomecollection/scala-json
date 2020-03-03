@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.3 - 2020-03-03
+
+Remove unnecessary logback dependencies to prevent downstream dependency issues
+
 ## v1.1.2 - 2019-07-01
 
 Bump the version of Circe to 0.11.1.
