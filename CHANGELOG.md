@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.0 - 2020-04-20
+
+Upgrade scalatest
+
 ## v1.1.3 - 2020-03-03
 
 Remove unnecessary logback dependencies to prevent downstream dependency issues
