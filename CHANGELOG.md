@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.1 - 2020-04-20
+
+Update imports for scalatest to remove compile warnings
+
 ## v2.0.0 - 2020-04-20
 
 Upgrade scalatest
