@@ -5,7 +5,7 @@ object Dependencies {
   lazy val versions = new {
     val circe     = "0.11.1"
     val grizzled  = "1.3.2"
-    val scalatest = "3.0.1"
+    val scalatest = "3.1.1"
   }
 
   val circeDependencies = Seq(
