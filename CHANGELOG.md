@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.3.0 - 2020-04-30
+
+Upgrade circe from 0.11.1 to 0.13.0.
+
 ## v2.0.1 - 2020-04-20
 
 Update imports for scalatest to remove compile warnings
