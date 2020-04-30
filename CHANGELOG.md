@@ -6,7 +6,7 @@ Update imports for scalatest to remove compile warnings
 
 ## v2.0.0 - 2020-04-20
 
-Upgrade scalatest
+Upgrade scalatest from 3.0.1 to 3.1.1.
 
 ## v1.1.3 - 2020-03-03
 
